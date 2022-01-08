@@ -2,7 +2,7 @@ extends Node
 
 signal switched_plane(plane)
 
-export var plane = 0
+var plane = 0
 
 func _process(delta):
 	if Input.is_action_just_pressed("switch_plane"):
