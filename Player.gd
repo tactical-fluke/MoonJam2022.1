@@ -26,9 +26,6 @@ func _physics_process(delta):
 	get_input()
 	velocity.y += gravity_scale * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
-	for i in get_slide_count():
-		var collision = get_slide_collision(i)
-		print("I collided with ", collision.collider.get_class())
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_speed
