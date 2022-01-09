@@ -6,11 +6,26 @@ export (float) var speed
 
 var distance_mult = 4
 
+var plane_manager
+
+export (Texture) var enemy_1_texture
+export (Texture) var enemy_2_texture
+
+onready var enemy_sprite = get_node("Enemy")
+
 var direction
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	plane_manager = get_node("/root/root/PlaneManager")
+	if plane_manager != null:
+		plane_manager.connect("switched_plane", self, "_on_plane_switched")
+	else:
+		print("Could not find the PlaneManager")
+	_on_plane_switched(0)
 	direction = start_direction
+	$Sprite.texture = enemy_1_texture
+	_on_plane_switched(0)
 
 
 func _physics_process(delta):
@@ -26,3 +41,9 @@ func _physics_process(delta):
 
 func swap_direction():
 	direction = -1 if direction == 1 else 1
+	
+func _on_plane_switched(plane):
+	if plane == 0:
+		$Sprite.texture = enemy_1_texture
+	else:
+		$Sprite.texture = enemy_2_texture
