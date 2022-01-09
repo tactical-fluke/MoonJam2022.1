@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Player Sprites/PLAYER1.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 12.5, 25 )
+extents = Vector2( 21.5, 25 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -12,12 +13,11 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.5, -2 )
+position = Vector2( -3.5, 0 )
 shape = SubResource( 1 )
-
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color( 0.215686, 0.337255, 0.658824, 1 )
-polygon = PoolVector2Array( -13, -27, 12, -27, 12, 23, -13, 23 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
