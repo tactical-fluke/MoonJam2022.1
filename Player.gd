@@ -11,6 +11,27 @@ export (int) var max_speed = 800
 
 var velocity = Vector2.ZERO
 
+var animated_sprite
+
+func _ready():
+	var plane_manager = get_node("/root/root/PlaneManager")
+	if plane_manager:
+		plane_manager.connect("switched_plane", self, "_on_plane_switched")
+	else:
+		print("Could not find PlaneManager")
+		
+	_on_plane_switched(0)
+
+func _on_plane_switched(layer):
+	if layer == 0:
+		animated_sprite = $Layer1_Sprite
+		$Layer2_Sprite.hide()
+		$Layer1_Sprite.show()
+	else:
+		animated_sprite = $Layer2_Sprite
+		$Layer1_Sprite.hide()
+		$Layer2_Sprite.show()
+
 func get_input():
 	var dir = 0
 	if Input.is_action_pressed("walk_right"):
@@ -29,3 +50,17 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_speed
+			
+	handle_animation()
+	
+func handle_animation():
+	animated_sprite.flip_h = velocity.x > 1
+	
+	if velocity.y > 1:
+		animated_sprite.play("Jump")
+	elif velocity.y < -1:
+		animated_sprite.play("Fall")
+	elif abs(velocity.x) > 1:
+		animated_sprite.play("Run")
+	else:
+		animated_sprite.play("Idle")
