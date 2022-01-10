@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://PlayButton.gd" type="Script" id=1]
 [ext_resource path="res://QuitButton.gd" type="Script" id=2]
+[ext_resource path="res://UI/QUIT.png" type="Texture" id=3]
+[ext_resource path="res://UI/menu1.png" type="Texture" id=4]
+[ext_resource path="res://UI/menu2.png" type="Texture" id=5]
+[ext_resource path="res://UI/START.png" type="Texture" id=6]
+[ext_resource path="res://UI/CREDITS Page.png" type="Texture" id=7]
+[ext_resource path="res://CreditsButton.gd" type="Script" id=8]
+[ext_resource path="res://UI/CREDITS.png" type="Texture" id=9]
+[ext_resource path="res://QuitCredits.gd" type="Script" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -10,22 +26,80 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 960, 540 )
+frames = SubResource( 1 )
+frame = 1
+playing = true
+
 [node name="PlayButton" type="Button" parent="."]
-anchor_left = 0.45
-anchor_top = 0.3
-anchor_right = 0.55
-anchor_bottom = 0.3
-margin_right = 12.0
-margin_bottom = 20.0
-text = "Play"
+anchor_left = 0.475
+anchor_top = 0.144
+anchor_right = 0.585
+anchor_bottom = 0.219
+margin_left = -6.10352e-05
+margin_top = 0.479996
+margin_right = 0.799927
+margin_bottom = 0.47998
+icon = ExtResource( 6 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="QuitButton" type="Button" parent="."]
-anchor_left = 0.45
-anchor_top = 0.7
-anchor_right = 0.55
-anchor_bottom = 0.7
-margin_right = 12.0
-margin_bottom = 20.0
-text = "Quit"
+anchor_left = 0.476
+anchor_top = 0.887
+anchor_right = 0.586
+anchor_bottom = 0.962
+margin_left = 0.0799561
+margin_top = 0.039978
+margin_right = 0.880005
+margin_bottom = 0.039917
+icon = ExtResource( 3 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsButton" type="Button" parent="."]
+anchor_left = 0.476
+anchor_top = 0.801
+anchor_right = 0.586
+anchor_bottom = 0.875
+margin_left = -0.920044
+margin_top = -0.0800781
+margin_right = -0.119995
+margin_bottom = -6.10352e-05
+icon = ExtResource( 9 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="CreditsButton"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CreditsButton/Control"]
+margin_left = -913.0
+margin_top = -865.0
+margin_right = 1007.0
+margin_bottom = 215.0
+texture = ExtResource( 7 )
+
+[node name="QuitCredits" type="Button" parent="CreditsButton/Control"]
+anchor_right = 4.715
+margin_left = 851.0
+margin_top = -865.0
+margin_right = 818.4
+margin_bottom = -755.0
+text = "X"
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
