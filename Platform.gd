@@ -10,7 +10,7 @@ export (Texture) var plane_1_texture
 export (Texture) var plane_2_texture
 
 export (bool) var movement = false
-export (int) var move_speed
+export (int) var move_speed = 50
 export (NodePath) var patrol_path
 
 var patrol_points
@@ -33,13 +33,13 @@ func _ready():
 		return
 	else:
 		if patrol_path:
-			patrol_points = get_node(patrol_path).curve.get_baked_points()
+			patrol_points = get_node(patrol_path).get_curve().get_baked_points()
 			
 func _physics_process(delta):
-	if !patrol_path:
+	if !patrol_path || !patrol_points:
 		return
 	var target = patrol_points[patrol_index]
-	if position.distance_to(target) < 1:
+	if position.distance_to(target) < 5.0:
 		patrol_index = wrapi(patrol_index + 1, 0, patrol_points.size())
 		target = patrol_points[patrol_index]
 	velocity = (target - position).normalized() * move_speed
