@@ -8,6 +8,7 @@
 script = ExtResource( 1 )
 plane_1_track = ExtResource( 2 )
 plane_2_track = ExtResource( 3 )
+volume = 5
 
 [node name="Track1" type="AudioStreamPlayer" parent="."]
 
