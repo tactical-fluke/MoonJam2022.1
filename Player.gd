@@ -56,9 +56,9 @@ func _physics_process(delta):
 func handle_animation():
 	animated_sprite.flip_h = velocity.x > 1
 	
-	if velocity.y > 1:
+	if velocity.y < 0:
 		animated_sprite.play("Jump")
-	elif velocity.y < -1:
+	elif velocity.y > 0:
 		animated_sprite.play("Fall")
 	elif abs(velocity.x) > 1:
 		animated_sprite.play("Run")
