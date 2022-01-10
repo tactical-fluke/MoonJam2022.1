@@ -17,6 +17,7 @@ func _ready():
 		
 	$Sprite.texture = layer_1_texture
 	_on_plane_switched(0)
+	$Polygon2D.queue_free()
 
 
 func _on_plane_switched(layer):
@@ -36,8 +37,10 @@ func swap_sprite(layer):
 func toggle_sprite(layer):
 	if layer == enabled_layer:
 		show()
+		$CollisionShape2D.call("set_disabled", false)
 	else:
 		hide()
+		$CollisionShape2D.call("set_disabled", true)
 
 
 func _on_Collectible_area_entered(area):
