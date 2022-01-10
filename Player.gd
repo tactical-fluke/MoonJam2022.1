@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export (int) var speed = 400
-export (int) var jump_speed = -800
+export (int) var jump_speed = -600
 export (int) var gravity_scale = 2000
 
 export (float, 0.0, 1.0) var acceleration = 0.25
@@ -10,6 +10,8 @@ export (float, 0.0, 1.0) var friction = 0.1
 export (int) var max_speed = 800
 
 var velocity = Vector2.ZERO
+
+var num_jumps = 0
 
 var animated_sprite
 
@@ -45,11 +47,14 @@ func get_input():
 		velocity.x = lerp(velocity.x, 0, friction)
 	
 func _physics_process(delta):
+	if is_on_floor():
+		num_jumps = 0
 	get_input()
 	velocity.y += gravity_scale * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 	if Input.is_action_just_pressed("jump"):
-		if is_on_floor():
+		if is_on_floor() || num_jumps < 1:
+			num_jumps += 1
 			velocity.y = jump_speed
 			$JumpNoise.play()
 			
