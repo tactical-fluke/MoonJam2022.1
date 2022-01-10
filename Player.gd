@@ -21,6 +21,7 @@ func _ready():
 		print("Could not find PlaneManager")
 		
 	_on_plane_switched(0)
+	$JumpNoise.stream
 
 func _on_plane_switched(layer):
 	if layer == 0:

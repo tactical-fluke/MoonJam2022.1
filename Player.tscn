@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Player Sprites/FOREST JUMP.png" type="Texture" id=2]
@@ -20,11 +20,6 @@ extents = Vector2( 21.5, 25 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "Fall",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "Run",
@@ -39,15 +34,15 @@ animations = [ {
 "loop": true,
 "name": "Jump",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Fall",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "Fall",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 9 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "Run",
@@ -62,9 +57,17 @@ animations = [ {
 "loop": true,
 "name": "Jump",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "Fall",
+"speed": 5.0
 } ]
 
-[node name="Player" type="KinematicBody2D"]
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 21.5, 25 )
+
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -87,3 +90,9 @@ animation = "Run"
 
 [node name="JumpNoise" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
+
+[node name="Area2D" type="Area2D" parent="." groups=["Player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -3.5, 0 )
+shape = SubResource( 4 )
