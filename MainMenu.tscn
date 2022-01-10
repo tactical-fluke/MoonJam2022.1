@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://PlayButton.gd" type="Script" id=1]
 [ext_resource path="res://QuitButton.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://CreditsButton.gd" type="Script" id=8]
 [ext_resource path="res://UI/CREDITS.png" type="Texture" id=9]
 [ext_resource path="res://QuitCredits.gd" type="Script" id=10]
+[ext_resource path="res://Music/Intro.mp3" type="AudioStream" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -29,6 +30,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 960, 540 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="PlayButton" type="Button" parent="."]
@@ -102,3 +104,7 @@ script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+autoplay = true

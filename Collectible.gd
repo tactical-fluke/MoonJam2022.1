@@ -6,6 +6,8 @@ export (int, 0, 1) var enabled_layer
 export (Texture) var layer_1_texture
 export (Texture) var layer_2_texture
 
+var collected = false
+
 signal collected
 
 func _ready():
@@ -35,15 +37,23 @@ func swap_sprite(layer):
 
 
 func toggle_sprite(layer):
-	if layer == enabled_layer:
-		show()
-		$CollisionShape2D.call("set_disabled", false)
-	else:
-		hide()
-		$CollisionShape2D.call("set_disabled", true)
+	if !collected:
+		if layer == enabled_layer:
+			show()
+			$CollisionShape2D.call("set_disabled", false)
+		else:
+			hide()
+			$CollisionShape2D.call("set_disabled", true)
 
 
 func _on_Collectible_area_entered(area):
 	if area.is_in_group("Player"):
 		emit_signal("collected")
-		queue_free()
+		$Timer.start()
+		$CollectNoise.play()
+		$CollisionShape2D.call_deferred("set_disabled", true)
+		hide()
+		collected = true
+		
+func _on_Timer_timeout():
+	queue_free()
