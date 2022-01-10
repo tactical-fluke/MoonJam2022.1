@@ -8,6 +8,7 @@ var enabled
 
 var cached_tile_info
 var cached_tile_locations
+var cached_tile_ids
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,6 +53,7 @@ func get_array_id_for_tile(tile_ids, tile):
 func cache_tile_info():
 	cached_tile_info = {}
 	cached_tile_locations = []
+	cached_tile_ids = tile_set.get_tiles_ids()
 	var locations = get_used_cells()
 	for location in locations:
 		cached_tile_locations.append(location)
