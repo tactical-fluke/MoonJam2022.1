@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://CollectibleManagerOverlay.gd" type="Script" id=1]
+
+[node name="CollectibleManagerOverlay" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="CountLabel" type="Label" parent="."]
+margin_left = 1849.0
+margin_top = 106.0
+margin_right = 1894.0
+margin_bottom = 151.0
+text = "N"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SeparatorLabel" type="Label" parent="."]
+margin_left = 1838.0
+margin_top = 94.0
+margin_right = 1878.0
+margin_bottom = 108.0
+text = "/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollectedLabel" type="Label" parent="."]
+margin_left = 1817.0
+margin_top = 83.0
+margin_right = 1857.0
+margin_bottom = 97.0
+text = "N"
+__meta__ = {
+"_edit_use_anchors_": false
+}

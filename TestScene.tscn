@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Tiles/grass2.png" type="Texture" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -13,6 +13,12 @@
 [ext_resource path="res://Tiles/forest dirt tile1-2.png" type="Texture" id=11]
 [ext_resource path="res://ForestBackground.tscn" type="PackedScene" id=12]
 [ext_resource path="res://SpaceBackground.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Collectible.tscn" type="PackedScene" id=14]
+[ext_resource path="res://CollectibleManager.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Collectibles/grapes2.png" type="Texture" id=16]
+[ext_resource path="res://Collectibles/berry.png" type="Texture" id=17]
+[ext_resource path="res://Collectibles/grapes.png" type="Texture" id=18]
+[ext_resource path="res://Collectibles/watermelon.png" type="Texture" id=19]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 50, 50, 0, 50, 0, 0, 50, 0 )
@@ -231,3 +237,20 @@ transform = Transform2D( 1, 0, 0, 1, -1000, -460 )
 offset = Vector2( -1000, -460 )
 transform = Transform2D( 1, 0, 0, 1, -1000, -460 )
 enabled_plane = 1
+
+[node name="Collectible" parent="." instance=ExtResource( 14 )]
+position = Vector2( 341, 118 )
+persistent = true
+layer_1_texture = ExtResource( 17 )
+layer_2_texture = ExtResource( 16 )
+
+[node name="Collectible2" parent="." instance=ExtResource( 14 )]
+position = Vector2( 480, 121 )
+layer_1_texture = ExtResource( 19 )
+
+[node name="Collectible3" parent="." instance=ExtResource( 14 )]
+position = Vector2( 614, 115 )
+enabled_layer = 1
+layer_1_texture = ExtResource( 18 )
+
+[node name="CollectibleManager" parent="." instance=ExtResource( 15 )]
