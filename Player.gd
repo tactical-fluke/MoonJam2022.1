@@ -45,6 +45,9 @@ func get_input():
 		velocity.x = lerp(velocity.x, dir * speed, acceleration)
 	else:
 		velocity.x = lerp(velocity.x, 0, friction)
+		
+	if Input.is_action_just_pressed("game_back"):
+		get_tree().change_scene("res://MainMenu.tscn")
 	
 func _physics_process(delta):
 	if is_on_floor():
